@@ -24,8 +24,8 @@ all: tidy gen add-copyright format lint cover build
 # ==============================================================================
 # Build set
 
-ROOT_PACKAGE=github.com/sealerio/sealer
-VERSION_PACKAGE=github.com/sealerio/sealer/pkg/version
+ROOT_PACKAGE=github.com/cubxxw/k8s-iam
+VERSION_PACKAGE=github.com/cubxxw/k8s-iam/pkg/version
 
 Dirs=$(shell ls)
 GIT_TAG := $(shell git describe --exact-match --tags --abbrev=0  2> /dev/null || echo untagged)
@@ -86,6 +86,11 @@ fmt:
 .PHONY: vet
 vet:
 	go vet ./...
+
+## push: Push to remote repository
+.PHONY: push
+push:
+	@sh scripts/gitsync.sh
 
 ## lint: Run go lint against code.
 .PHONY: lint
